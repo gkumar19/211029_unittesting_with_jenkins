@@ -15,7 +15,7 @@ def subtract(a, b):
     return return_value
 
 def multiply(a, b):
-    from selenium import fgwebdriver
+    from selenium import webdriver
     return_value = a * b
     return return_value
 
