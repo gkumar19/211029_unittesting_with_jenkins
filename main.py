@@ -16,7 +16,7 @@ def subtract(a, b):
 
 def multiply(a, b):
     return_value = a * b
-    return return_value * 3
+    return return_value
 
 if __name__ != "__main__":
     print('main pipeline is running from other module')
