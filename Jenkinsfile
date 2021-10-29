@@ -30,9 +30,9 @@ pipeline {
         }
         stage('unit_testing') {
             steps {
-                script{
-                    sh 'python3 test_main.py'
-                }
+				catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+				sh 'python3 test_main.py'    
+				}
             }
         }
 	    stage('test echo') {
