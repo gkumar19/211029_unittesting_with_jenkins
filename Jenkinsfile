@@ -28,7 +28,7 @@ pipeline {
                 }
             }
         }
-        stage('unit_testing') {
+        stage('unit testing') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
 				    script {
