@@ -7,5 +7,6 @@ RUN apt-get install -y git
 
 WORKDIR /app
 
+RUN pip3 install selenium
 RUN chmod 755 ./entrypoint.sh
 CMD [ "./entrypoint.sh" ]
