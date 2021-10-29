@@ -31,7 +31,7 @@ pipeline {
         stage('unit_testing') {
             steps {
                 script{
-                    sh 'python3 unittest.py'
+                    sh 'python3 test_main.py'
                 }
             }
         }
