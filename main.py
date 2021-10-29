@@ -12,7 +12,7 @@ def add(a, b):
 
 def subtract(a, b):
     return_value = a - b
-    return return_value * 2
+    return return_value
 
 def multiply(a, b):
     return_value = a * b
