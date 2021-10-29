@@ -31,7 +31,9 @@ pipeline {
         stage('unit_testing') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                sh 'python3 test_main.py'    
+				    image.inside {
+                        sh 'python3 test_main.py'
+                    }						
                 }
             }
         }
