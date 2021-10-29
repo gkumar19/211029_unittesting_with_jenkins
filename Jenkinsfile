@@ -24,22 +24,18 @@ pipeline {
             steps {
                 script{
 				    /* image tag to be kept, dockerfile_name to be kept in environmental variables*/
-                    image = docker.build("2233445566a/my_python_app:${TAG}", "-f ${DOCKERFILE_NAME} .")
+                    image = docker.build("2233445566a/unittest_main:${TAG}", "-f ${DOCKERFILE_NAME} .")
                 }
             }
         }
-        stage('push image') {
+        stage('unit_testing') {
             steps {
                 script{
-                    docker.withRegistry('https://registry.hub.docker.com/', 'credential_id_for_login') {
-                        image.push()
-                        /* image.push(env.BUILD_ID) */
-                        /* image.push(env.BUILD_TAG) */
-                    }
+				    sh 'python3 unittest.py'
                 }
             }
         }
-	stage('test echo') {
+	    stage('test echo') {
             steps {
                 echo "test completed"
             }
