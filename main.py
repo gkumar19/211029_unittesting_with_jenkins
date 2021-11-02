@@ -16,7 +16,7 @@ def subtract(a, b):
 
 def multiply(a, b):
     from selenium import webdriver
-    return_value = a * b
+    return_value = a * b *2
     return return_value
 
 if __name__ != "__main__":
