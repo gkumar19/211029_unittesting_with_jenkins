@@ -31,15 +31,15 @@ pipeline {
         stage('unit testing') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-				    script {
-				        image.inside {
+                    script {
+                        image.inside {
                             sh 'python3 test_main.py'
                         }
                     }						
                 }
             }
         }
-	    stage('test echo') {
+	stage('test echo') {
             steps {
                 echo "test completed"
             }
