@@ -28,6 +28,20 @@ pipeline {
                 }
             }
         }
+        stage('unit testing agent') {
+	    agent {
+                docker {
+                    image "2233445566a/unittest_main:${TAG}"
+                    // Run the container on the node specified at the top-level of the Pipeline, in the same workspace, rather than on a new node entirely:
+                    reuseNode true
+                }
+            }
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh 'python3 test_main.py'						
+                }
+            }
+        }
         stage('unit testing') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
