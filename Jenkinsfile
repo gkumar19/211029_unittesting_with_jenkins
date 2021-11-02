@@ -47,6 +47,7 @@ pipeline {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     script {
                         image.inside {
+			    sh 'chmod 755 ./test_main.py'
                             sh 'python3 test_main.py'
                         }
                     }						
