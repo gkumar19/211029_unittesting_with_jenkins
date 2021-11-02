@@ -12,6 +12,7 @@ pipeline {
             script: 'echo ${GIT_BRANCH} | cut -d "/" -f 2'
         )
 		DOCKERFILE_NAME="Dockerfile"
+	        DOCKERFILE_NAME_TEST="Dockerfile_test"
     }
     stages {
         stage('git checkout') {
@@ -25,6 +26,14 @@ pipeline {
                 script{
 				    /* image tag to be kept, dockerfile_name to be kept in environmental variables*/
                     image = docker.build("2233445566a/unittest_main:${TAG}", "-f ${DOCKERFILE_NAME} .")
+                }
+            }
+        }
+        stage('unit testing dockerfile') {
+            steps {
+                script{
+				    /* image tag to be kept, dockerfile_name to be kept in environmental variables*/
+                    image_test = docker.build("2233445566a/unittest_main:${TAG}", "-f ${DOCKERFILE_NAME_TEST} .")
                 }
             }
         }
@@ -47,7 +56,6 @@ pipeline {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     script {
                         image.inside {
-			    sh 'chmod 755 ./test_main.py'
                             sh 'python3 test_main.py'
                         }
                     }						
