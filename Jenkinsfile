@@ -31,9 +31,10 @@ pipeline {
         }
         stage('unit testing dockerfile') {
             steps {
-                script{
-				    /* image tag to be kept, dockerfile_name to be kept in environmental variables*/
-                    image_test = docker.build("2233445566a/unittest_main:${TAG}", "-f ${DOCKERFILE_NAME_TEST} .")
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    script {
+			 image_test = docker.build("2233445566a/unittest_main:${TAG}", "-f ${DOCKERFILE_NAME_TEST} .")
+                    }						
                 }
             }
         }
